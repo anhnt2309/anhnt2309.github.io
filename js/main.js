@@ -40,7 +40,7 @@
 	var counter = function() {
 		$('.js-counter').countTo({
 			 formatter: function (value, options) {
-	      return value.toFixed(options.decimals);
+	      return value.toFixed(options.decimals) + "+";
 	    },
 		});
 	};
@@ -85,7 +85,7 @@
 							}
 
 							el.removeClass('item-animate');
-						},  k * 200, 'easeInOutExpo' );
+						},  200, 'easeInOutExpo' );
 					});
 					
 				}, 100);
@@ -152,7 +152,7 @@
 				if ( $('[data-section="' + section + '"]').length ) {
 			    	$('html, body').animate({
 			        	scrollTop: $('[data-section="' + section + '"]').offset().top - 55
-			    	}, 500);
+			    	}, 500, 'easeInOutQuart');
 			   }
 
 		    if ( navbar.is(':visible')) {
@@ -304,6 +304,13 @@
 		sliderMain();
 		stickyFunction();
 		owlCrouselFeatureSlide();
+
+		$('a[href*=#]').click(function(event){
+			$('html, body').animate({
+				scrollTop: $( $.attr(this, 'href') ).offset().top
+			}, 500);
+			event.preventDefault();
+		});
 	});
 
 
